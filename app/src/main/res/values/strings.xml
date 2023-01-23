@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Coupons</string>
+    <string name="consult">Consult</string>
+    <string name="create">Crear cupon</string>
+    <string name="title">Bienvenido, ingrese su cupón y a continuación presione en ejecutar</string>
 </resources>
