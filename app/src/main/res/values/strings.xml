@@ -3,4 +3,6 @@
     <string name="consult">Consult</string>
     <string name="create">Crear cupon</string>
     <string name="title">Bienvenido, ingrese su cupón y a continuación presione en ejecutar</string>
+    <string name="main_hint_coupon">Cupón</string>
+    <string name="consultar">Consultar</string>
 </resources>
