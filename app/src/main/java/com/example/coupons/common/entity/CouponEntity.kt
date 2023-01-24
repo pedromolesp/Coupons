@@ -1,4 +1,4 @@
-package com.example.coupons
+package com.example.coupons.common.entity
 
 import androidx.room.Entity
 import androidx.room.Index

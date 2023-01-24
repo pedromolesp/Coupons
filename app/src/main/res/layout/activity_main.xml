@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/common_padding_xlarge"
     android:paddingVertical="@dimen/default_padding"
-    tools:context=".MainActivity">
+    tools:context=".mainModule.view.MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

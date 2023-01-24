@@ -1,7 +1,8 @@
-package com.example.coupons
+package com.example.coupons.common.dataAccess
 
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.coupons.common.entity.CouponEntity
 
 interface CouponDAO {
     @Query("SELECT * FROM CouponEntity WHERE code = :code")
