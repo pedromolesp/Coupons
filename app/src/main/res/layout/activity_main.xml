@@ -20,9 +20,10 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/consultar"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndtOf="btnCreate"
+        app:layout_constraintStart_toEndOf="@+id/btnCreate"
         tools:text="@string/consult" />
 
     <com.google.android.material.button.MaterialButton
@@ -30,11 +31,11 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/create"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toStartOf="@id/btnConsult"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/create"
         tools:visibility="visible" />
 
     <TextView
@@ -49,4 +50,46 @@
         app:layout_constraintTop_toTopOf="parent"
 
         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCoupon"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_padding"
+        android:hint="@string/main_hint_coupon"
+        app:layout_constraintBottom_toTopOf="@id/btnConsult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/main_hint_coupon" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDescriptiom"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_padding"
+        android:enabled="false"
+        android:hint="@string/main_hint_coupon"
+        app:endIconMode="clear_text"
+
+        app:layout_constraintBottom_toTopOf="@id/tilCoupon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/main_hint_coupon"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            tools:text="Cupón válido por 10% en compras mayores a 10$" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
