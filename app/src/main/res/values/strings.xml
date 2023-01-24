@@ -5,4 +5,7 @@
     <string name="title">Bienvenido, ingrese su cupón y a continuación presione en ejecutar</string>
     <string name="main_hint_coupon">Cupón</string>
     <string name="consultar">Consultar</string>
+    <string name="invalid">Error description invalid</string>
+    <string name="length">El cupón debe tener entre 5 y 10 caracteres.</string>
+    <string name="unknown">Desconocido</string>
 </resources>
