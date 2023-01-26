@@ -9,5 +9,5 @@ data class CouponEntity(
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
     var code: String = "",
     var description: String = "",
-    var isActive: Boolean
+    var isActive: Boolean = false
 )
