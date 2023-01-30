@@ -12,4 +12,5 @@
     <string name="main_hint_description">Descripción</string>
     <string name="main_hint_active">Activo</string>
     <string name="main_hint_inactive">Inactivo</string>
+    <string name="exist">El código de cupón ya existe</string>
 </resources>

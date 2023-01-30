@@ -10,7 +10,7 @@ fun validateText(code: String): Boolean {
 }
 
 fun getMessageErrorByCode(errorCode: String?): Int = when (errorCode) {
-    Constants.ERROR_EXIST -> (R.string.invalid)
+    Constants.ERROR_EXIST -> (R.string.exist)
     Constants.ERROR_LENGTH -> (R.string.length)
     Constants.ERROR_EXIST -> (R.string.unknown)
     else -> R.string.unknown
