@@ -12,18 +12,10 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
     private val repository = MainRepository()
 
-    private val result = MutableLiveData<CouponEntity>()
-    fun getResult() = result
     private val coupon = MutableLiveData<CouponEntity>()
 
     private val hideKeyboard = MutableLiveData<Boolean>()
-    fun getHideKeyboard() = hideKeyboard
-
-    fun consultCouponByCodeOld(code: String) {
-        viewModelScope.launch {
-            result.value = repository.consultCouponByCode(code)
-        }
-    }
+    fun isHideKeyboard() = hideKeyboard
 
     private val snackMsg = MutableLiveData<Int>()
     fun getSnackbarMsg() = snackMsg
@@ -32,25 +24,12 @@ class MainViewModel : ViewModel() {
         coupon.value?.code.let { code ->
             viewModelScope.launch {
                 hideKeyboard.value = true
-                result.value = repository.consultCouponByCode(code)
+                coupon.value = repository.consultCouponByCode(code)
             }
         }
 
     }
 
-    fun saveCouponOld(couponEntity: CouponEntity) {
-        viewModelScope.launch {
-
-            try {
-                repository.saveCoupon(couponEntity)
-                consultCouponByCode()
-                snackMsg.value = R.string.main_save_success
-            } catch (e: Exception) {
-
-                snackMsg.value = getMessageErrorByCode(e.message)
-            }
-        }
-    }
 
     fun saveCoupon() {
         coupon.value?.let { couponEntity ->
