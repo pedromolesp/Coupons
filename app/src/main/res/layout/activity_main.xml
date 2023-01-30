@@ -1,96 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/common_padding_xlarge"
-    android:paddingVertical="@dimen/default_padding"
-    tools:context=".mainModule.view.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
+    <data>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnConsult"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/consultar"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCreate"
-        tools:text="@string/consult" />
+        <import type="com.example.coupons.common.entity.CouponEntity" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnCreate"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintEnd_toStartOf="@id/btnConsult"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+        <variable
+            name="viewModel"
+            type="com.example.coupons.mainModule.viewmodel.MainViewModel" />
 
-    <TextView
-        android:id="@+id/tvTtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textAlignment="center"
-        android:textSize="16dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        <variable
+            name="isActive"
+            type="boolean" />
+    </data>
 
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/common_padding_xlarge"
+        android:paddingVertical="@dimen/default_padding"
+        tools:context=".mainModule.view.MainActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCoupon"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_padding"
-        android:hint="@string/main_hint_coupon"
-        app:layout_constraintBottom_toTopOf="@id/btnConsult"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCoupon"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/main_hint_coupon" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDescriptiom"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_padding"
-        android:enabled="false"
-        android:hint="@string/main_hint_coupon"
-        app:endIconMode="clear_text"
-
-        app:layout_constraintBottom_toTopOf="@id/tilCoupon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDescription"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConsult"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/main_hint_coupon"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-            tools:text="Cupón válido por 10% en compras mayores a 10$" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:onClick="@{()->viewModel.consultCouponByCode()}"
+            android:text="@string/consultar"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCreate"
+            tools:text="@string/consult" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCreate"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create"
+            android:onClick="@{()->viewModel.saveCoupon()}"
+
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintEnd_toStartOf="@id/btnConsult"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvTtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCoupon"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:hint="@string/main_hint_coupon"
+            app:layout_constraintBottom_toTopOf="@id/btnConsult"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCoupon"
+                android:layout_width="match_parent"
+                android:text="@{viewModel.coupon.code}"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/main_hint_coupon" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescriptiom"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:enabled="@{!isActive}"
+            android:hint="@{isActive ? @string/main_hint_active : @string/main_hint_description}"
+            app:endIconMode="clear_text"
+
+            app:layout_constraintBottom_toTopOf="@id/tilCoupon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/main_hint_coupon"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                tools:text="@{viewModel.coupon.description}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
