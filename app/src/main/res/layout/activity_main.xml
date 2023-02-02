@@ -47,8 +47,8 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create"
             android:onClick="@{()->viewModel.saveCoupon()}"
+            android:text="@string/create"
 
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/guideline"
@@ -84,9 +84,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCoupon"
                 android:layout_width="match_parent"
-                android:text="@{viewModel.coupon.code}"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/main_hint_coupon" />
+                android:contentDescription="@string/main_hint_coupon"
+                android:text="@={viewModel.coupon.code}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -108,8 +108,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/main_hint_coupon"
+                android:text="@={viewModel.coupon.description}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                tools:text="@{viewModel.coupon.description}" />
+                tools:text="Cupón válido por 10%" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
