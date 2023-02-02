@@ -1,5 +1,6 @@
 package com.example.coupons.mainModule.view
 
+import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,13 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel?.let {
             it.coupon.observe(this@MainActivity) { coupon ->
                 binding.isActive = coupon != null && coupon.isActive
+                if (coupon.isActive){
+                    binding.tvTtitle.text = "Cupón disponible, añade descripción y pulsa crear"
+                    binding.tvTtitle.setTextColor(resources.getColor(androidx.media.R.color.secondary_text_default_material_dark))
+                }else{
+                    binding.tvTtitle.text = resources.getString(R.string.title)
 
+                }
                 it.getSnackbarMsg().observe(this@MainActivity) { msg ->
                     Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
                 }
