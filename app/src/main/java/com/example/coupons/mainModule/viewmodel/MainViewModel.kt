@@ -1,14 +1,24 @@
-package com.example.coupons.mainModule.viewmodel
+package com.cursosandroidant.coupons.mainModule.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.coupons.R
-import com.example.coupons.common.entity.CouponEntity
-import com.example.coupons.common.utils.getMessageErrorByCode
-import com.example.coupons.mainModule.model.MainRepository
+import com.cursosandroidant.coupons.R
+import com.cursosandroidant.coupons.common.entities.CouponEntity
+import com.cursosandroidant.coupons.common.utils.getMsgErrorByCode
+import com.cursosandroidant.coupons.mainModule.model.MainRepository
 import kotlinx.coroutines.launch
 
+/****
+ * Project: Coupons
+ * From: com.cursosandroidant.coupons.mainModule.viewModel
+ * Created by Alain Nicolás Tello on 24/02/22 at 13:59
+ * All rights reserved 2022.
+ *
+ * All my Udemy Courses:
+ * https://www.udemy.com/user/alain-nicolas-tello/
+ * Web: www.alainnicolastello.com
+ ***/
 class MainViewModel : ViewModel() {
     private val repository = MainRepository()
 
@@ -17,21 +27,19 @@ class MainViewModel : ViewModel() {
     private val hideKeyboard = MutableLiveData<Boolean>()
     fun isHideKeyboard() = hideKeyboard
 
-    private val snackMsg = MutableLiveData<Int>()
-    fun getSnackbarMsg() = snackMsg
+    private val snackbarMsg = MutableLiveData<Int>()
+    fun getSnackbarMsg() = snackbarMsg
 
-    fun consultCouponByCode() {
-            coupon.value?.code?.let { code ->
+    fun consultCouponByCode(){
+        coupon.value?.code?.let { code ->
             viewModelScope.launch {
                 hideKeyboard.value = true
                 coupon.value = repository.consultCouponByCode(code) ?: CouponEntity(code = code, isActive = false)
             }
         }
-
     }
 
-
-    fun saveCoupon() {
+    fun saveCoupon(){
         coupon.value?.let { couponEntity ->
             viewModelScope.launch {
                 hideKeyboard.value = true
@@ -39,10 +47,9 @@ class MainViewModel : ViewModel() {
                     couponEntity.isActive = true
                     repository.saveCoupon(couponEntity)
                     consultCouponByCode()
-                    snackMsg.value = R.string.main_save_success
+                    snackbarMsg.value = R.string.main_save_success
                 } catch (e: Exception) {
-
-                    snackMsg.value = getMessageErrorByCode(e.message)
+                    snackbarMsg.value = getMsgErrorByCode(e.message)
                 }
             }
         }
