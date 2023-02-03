@@ -1,4 +1,4 @@
-package com.example.coupons
+package com.cursosandroidant.coupons
 
 import org.junit.Test
 
