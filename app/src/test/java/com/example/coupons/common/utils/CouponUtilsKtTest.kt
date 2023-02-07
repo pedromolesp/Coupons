@@ -2,6 +2,7 @@ package com.example.coupons.common.utils
 
 import com.cursosandroidant.coupons.common.utils.validateTextCode
 import com.cursosandroidant.coupons.R
+import com.cursosandroidant.coupons.common.utils.Constants
 import com.cursosandroidant.coupons.common.utils.getMsgErrorByCode
 import org.junit.Assert.*
 
@@ -41,6 +42,14 @@ class CouponUtilsKtTest {
         val errorCode = null
         val expectedValue = R.string.error_unknow
         val result = getMsgErrorByCode(errorCode)
-        assertEquals(expectedValue, result)
+        assertEquals("Error al evaluar un null",expectedValue, result)
+    }
+
+    @Test
+    fun getMsgErrorByCodeExistTest(){
+        val errorCode = Constants.ERROR_EXIST
+        val expectedValue = R.string.error_unique_code
+        val result = getMsgErrorByCode(errorCode)
+        assertEquals("Error al evaluar un cupón existente",expectedValue, result)
     }
 }
