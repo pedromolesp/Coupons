@@ -74,4 +74,17 @@ class CouponUtilsKtTest {
         val bNames = arrayOf("Daniel", "Peedro", "Mary")
         assertArrayEquals("Los arrays deberían coincidir", bNames, aNames)
     }
+
+    @Test
+    fun checkGroupsFailTest() {
+        val aNames = arrayOf("Danil", "Pedro", "Mary")
+        val bNames = arrayOf("Daniel", "Peedro", "Mary")
+        assertNotEquals("Los arrays deberían coincidir", bNames, aNames)
+    }
+
+    @Test
+    fun checkNullCouponTest() {
+        val coupon =null
+        assertNull("El cupón debería ser null",coupon)
+    }
 }
