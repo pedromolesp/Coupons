@@ -4,6 +4,7 @@ import com.cursosandroidant.coupons.common.utils.validateTextCode
 import com.cursosandroidant.coupons.R
 import com.cursosandroidant.coupons.common.utils.Constants
 import com.cursosandroidant.coupons.common.utils.getMsgErrorByCode
+import com.example.coupons.common.entity.CouponEntity
 import org.junit.Assert.*
 
 import org.junit.Test
@@ -59,5 +60,11 @@ class CouponUtilsKtTest {
         val result = getMsgErrorByCode(errorCode)
         assertEquals("Error al evaluar la longitud válida",expectedValue, result)
         assertNotEquals("El recurso no existe",-1, result)
+    }
+
+    @Test
+    fun checkNotNullCouponTest(){
+        val coupon = CouponEntity(code = "ANDROID", description = "Cursos a $9,99 USD")
+        assertNotNull(coupon)
     }
 }
