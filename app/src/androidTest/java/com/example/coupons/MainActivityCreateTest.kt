@@ -54,5 +54,7 @@ class MainActivityCreateTest {
 
         btnCreate.perform(click())
 
+        val snackbar = onView(withId(com.google.android.material.R.id.snackbar_text))
+        snackbar.check(matches(withText("Cupón creado")))
     }
 }
