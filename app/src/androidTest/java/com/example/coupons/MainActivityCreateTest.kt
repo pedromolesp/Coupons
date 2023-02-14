@@ -60,7 +60,7 @@ class MainActivityCreateTest {
     }
 
     @Test
-    fun consultCuponExist() {
+    fun consultCouponExist() {
         val etCoupon = onView(withId(R.id.etCoupon))
         etCoupon.check(matches(withText("")))
         etCoupon.perform(click())
@@ -74,5 +74,26 @@ class MainActivityCreateTest {
 
         val btnCreate = onView(withId(R.id.btnCreate))
         btnCreate.check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun consultRepeatedCouponExist() {
+        val etCoupon = onView(withId(R.id.etCoupon))
+        etCoupon.check(matches(withText("")))
+        etCoupon.perform(click())
+        etCoupon.perform(replaceText("WELCOME_03"))
+
+        val btnConsult = onView(withId(R.id.btnConsult))
+        btnConsult.perform(click())
+
+        val etDescription = onView(withId(R.id.etDescription))
+        etDescription.perform(replaceText("description"))
+        etCoupon.perform(replaceText("WELCOME_01"))
+
+        val btnCreate = onView(withId(R.id.btnCreate))
+        btnCreate.perform(click())
+
+        val snackbar = onView(withId(com.google.android.material.R.id.snackbar_text))
+        snackbar.check(matches(withText("Este cupón ya existe, agregue un código diferente.")))
     }
 }
