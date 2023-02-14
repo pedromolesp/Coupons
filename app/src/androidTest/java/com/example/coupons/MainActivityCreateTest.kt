@@ -12,6 +12,7 @@ import com.cursosandroidant.coupons.mainModule.view.MainActivity
 import org.junit.Rule
 import org.junit.runner.RunWith
 import com.cursosandroidant.coupons.R
+import org.hamcrest.CoreMatchers.not
 import org.junit.Test
 
 
@@ -56,5 +57,22 @@ class MainActivityCreateTest {
 
         val snackbar = onView(withId(com.google.android.material.R.id.snackbar_text))
         snackbar.check(matches(withText("Cupón creado")))
+    }
+
+    @Test
+    fun consultCuponExist() {
+        val etCoupon = onView(withId(R.id.etCoupon))
+        etCoupon.check(matches(withText("")))
+        etCoupon.perform(click())
+        etCoupon.perform(replaceText("WELCOME_01"))
+
+        val etDescription = onView(withId(R.id.etDescription))
+        etDescription.perform(replaceText("description"))
+
+        val btnConsult = onView(withId(R.id.btnConsult))
+        btnConsult.perform(click())
+
+        val btnCreate = onView(withId(R.id.btnCreate))
+        btnCreate.check(matches(not(isDisplayed())))
     }
 }
